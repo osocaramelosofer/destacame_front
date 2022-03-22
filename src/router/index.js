@@ -1,9 +1,12 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
-import Buses from '../views/Buses.vue'
+import ListPassengers from '../views/passengers/ListPassengers.vue'
+import CreatePassenger from '../views/passengers/CreatePassenger.vue'
 
 const routes = [
-    {path: '/buses', name:'Buses', component: Buses},
+    {path: '/list-passengers', name:'passengers', component: ListPassengers},
+    {path: '/create-passenger', name:'createPassengers', component: CreatePassenger},
+    {path: '/detail-passenger/:id', component: ()=> import('../views/passengers/DetailPassenger.vue')},
 
 ]
 

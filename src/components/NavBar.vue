@@ -13,11 +13,10 @@ const count = ref(0)
 <template>
   <nav class="bg-red-200">
     <div class="dropdown">
-      <button class="dropbtn">Buses</button>
+      <button class="dropbtn">Passengers</button>
       <div class="dropdown-content">
-        <router-link to="/buses">Buses</router-link>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        <router-link to="/list-passengers">List Passengers</router-link>
+        <router-link to="/create-passenger">Create Passenger</router-link>
       </div>
     </div>
 
