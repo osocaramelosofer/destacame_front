@@ -1,14 +1,31 @@
 
 <template>
-  <div class="bg-blue-300">
-    <h2 class="bg-red-300 ">List Passengers</h2>
+  <div class="bg-slate-100 p-5">
+    <h2 class="text-5xl mb-5 font-bold">List Passengers</h2>
     <!-- <button @click="getRoutes">get Routes</button> -->
 
-    <ul v-if="passengers">
-      <li v-for="(passenger, index) in passengers" :key="index">
-        {{ passenger.name}}
-      </li>
-    </ul>
+    <table class="bg-white rounded-lg m-auto w-full rounded-md" cellspacing="2" cellpadding="2" border="1">
+      <thead class="p-4 ">
+        <tr class="p-4 bg-slate-800 text-left ">
+          <th class="text-white">ID</th>
+          <th class="text-white">Passenger Name</th>
+          <th class="text-white">Edit</th>
+          <th class="text-white">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr v-for="passenger in passengers" :key="passenger.id">
+            <td>{{ passenger.id }}</td>
+            <td>{{ passenger.name }}</td>
+            <td>
+              <router-link :to="{name: 'detail.passenger', params:{id:passenger.id}}">Edit</router-link>
+            </td>
+            <td>
+              <button @click="deletePassenger(passenger.id)">Delete</button>
+            </td>
+          </tr>
+      </tbody>
+    </table>
   </div>
 
 </template>
@@ -41,6 +58,13 @@ export default {
     })
     .then(console.log(response))
     },
+    async deletePassenger(id) {
+      try{
+        const response = await axios.delete(`http://127.0.0.1:8000/api/passenger/passenger/${id}/`)
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
   },
   mounted() {

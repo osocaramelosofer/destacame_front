@@ -6,7 +6,7 @@ import CreatePassenger from '../views/passengers/CreatePassenger.vue'
 const routes = [
     {path: '/list-passengers', name:'passengers', component: ListPassengers},
     {path: '/create-passenger', name:'createPassengers', component: CreatePassenger},
-    {path: '/detail-passenger/:id', component: ()=> import('../views/passengers/DetailPassenger.vue')},
+    {path: '/detail-passenger/:id', name:'detail.passenger', component: ()=> import('../views/passengers/DetailPassenger.vue')},
 
 ]
 
