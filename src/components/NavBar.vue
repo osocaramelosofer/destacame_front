@@ -24,18 +24,16 @@ const count = ref(0)
       <div class="dropdown">
         <button class="dropbtn">Routes</button>
         <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <router-link to="/list-routes">List Routes</router-link>
+          <router-link to="/create-route">Create Route</router-link>
         </div>
       </div>
 
       <div class="dropdown">
         <button class="dropbtn">Drivers</button>
         <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <router-link to="/list-drivers">List drivers</router-link>
+          <router-link to="/create-driver">Create Driver</router-link>
         </div>
       </div>
 

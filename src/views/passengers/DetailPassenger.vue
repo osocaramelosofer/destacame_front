@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <h2>Detail Passenger</h2>
+  <div class="bg-slate-100 p-5">
+    <h2 class="text-5xl mb-5 font-bold">Detail Passenger</h2>
     <div v-if="passenger">
       <form v-on:submit.prevent="submitForm">
+        <div class="flex flex-col">
           <label for="name">Passenger Name: </label>
-          <input type="text" placeholder="Write your name" id="name" v-model="name">
-          
-          <input type="submit" value="Save"/>
+          <input type="text" placeholder="Write your name" id="name"  class="border-2 border-dashed" v-model="name">
+
+          <input type="submit" value="Save" class="rounded-md border-2 border-rose-500 bg-yellow-400 text-black font-bold"/>
+        </div>
       </form>
 
       <button class="bg-red-400" @click="deletePassenger">Delete</button>
