@@ -8,7 +8,7 @@
         <thead class="p-4 ">
           <tr class="p-4 bg-slate-800 text-left ">
             <th class="text-white">ID</th>
-            <th class="text-white">Name</th>
+            <th class="text-white">Driver Name</th>
             <th class="text-white">Plate</th>
             <th class="text-white">Edit</th>
             <th class="text-white">Delete</th>
@@ -17,7 +17,7 @@
         <tbody>
             <tr v-for="buss in buses" :key="buss.id">
               <td>{{ buss.id }}</td>
-              <td>{{ buss.name }}</td>
+              <td>{{ buss.driver.name }}</td>
               <td>{{ buss.plate }}</td>
               <td>
                 <router-link :to="{name: 'detail.buss', params:{id:buss.id}}">Edit</router-link>

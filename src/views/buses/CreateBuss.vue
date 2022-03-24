@@ -5,7 +5,7 @@
 
     <form v-on:submit.prevent="submitForm">
         <label for="name">Buss Driver Name</label>
-        <input type="text" placeholder="Write the buss driver" id="name" v-model="name">
+        <input type="select" placeholder="Write the buss driver" id="name" v-model="name">
 
         <label for="name">Buss Plate</label>
         <input type="text" placeholder="Write the plate of the buss" id="name" v-model="plate">
@@ -25,9 +25,17 @@ export default {
     return {
       name: '',
       plate: '',
+      drivers: [],
     }
   },
   methods: {
+    getDrivers () {
+      return axios.get(`http://127.0.0.1:8000/api/passenger/driver`, {
+            headers: {
+                'Content-type': 'application/json',
+            }
+      });
+    },
     async submitForm(){
       try {
         const response = await axios.post('http://127.0.0.1:8000/api/buses/buss/', {
@@ -40,6 +48,11 @@ export default {
         console.log(error);
       }
     }
+  },
+  mounted() {
+    this.getDrivers().then(response => {
+      this.drivers = response.data
+    });
   }
 }
 </script>
