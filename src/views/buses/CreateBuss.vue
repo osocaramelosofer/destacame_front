@@ -8,7 +8,11 @@
         <input type="select" placeholder="Write the buss driver" id="name" v-model="name">
 
         <label for="name">Buss Plate</label>
-        <input type="text" placeholder="Write the plate of the buss" id="name" v-model="plate">
+      <select name="driver">
+        <option v-for="driver in drivers" :key="driver.id">
+          {{ driver.name }}
+        </option>
+      </select>
 
         <input type="submit" value="Save"/>
     </form>
