@@ -45,6 +45,14 @@ const count = ref(0)
           <a href="#">Link 3</a>
         </div>
       </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Buses</button>
+        <div class="dropdown-content">
+          <router-link to="/list-buses">List Buses</router-link>
+          <router-link to="/create-buss">Create Buss</router-link>
+        </div>
+      </div>
     </div>
 
     <div class="flex items-center">

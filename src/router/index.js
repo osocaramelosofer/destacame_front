@@ -16,6 +16,11 @@ const routes = [
     {path: '/detail-route/:id', name:'detail.route', component: ()=> import('../views/routes/DetailRoute.vue')},
     {path: '/create-route', name:'create.route', component: ()=> import('../views/routes/CreateRoute.vue')},
 
+    {path: '/list-buses', name:'list.buses', component: ()=> import('../views/buses/ListBuses.vue')},
+    {path: '/detail-buss/:id', name:'detail.buss', component: ()=> import('../views/buses/DetailBuss.vue')},
+    {path: '/create-buss', name:'create.buss', component: ()=> import('../views/buses/CreateBuss.vue')},
+
+
 ]
 
 const router = createRouter({
