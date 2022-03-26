@@ -51,7 +51,7 @@
       <div class="w-36 h-36 p-2">
         <img src="../assets/fast.gif" alt="fast-move" class="h-full w-full object-cover rounded-lg"/>
       </div>
-      <span class="text-8xl font-mono font-extrabold">Fast Move</span>
+      <span class="text-5xl font-mono font-extrabold">Fast Move</span>
     </div>
   </nav>
 </template>
@@ -59,8 +59,8 @@
 <style scoped>
 .dropbtn {
   color: #374044;
-  padding: 16px;
-  font-size: 26px;
+  padding: 10px;
+  font-size: 20px;
   border: none;
   border-radius: 10px;
   background-color: #FFB700;
