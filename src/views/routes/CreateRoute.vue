@@ -1,17 +1,19 @@
 
 <template>
-  <div class="bg-blue-300">
-    <h2 class="bg-red-300 ">Create Route</h2>
+  <div class="bg-slate-100 p-20">
+    <h2 class="text-5xl mb-5 font-bold">Create Route</h2>
 
     <form v-on:submit.prevent="submitForm">
+      <div class="flex flex-col">
         <label for="origin">Route origin</label>
-        <input type="text" placeholder="Write the origin" id="origin" v-model="origin">
+        <input type="text" placeholder="Write the origin" id="origin" v-model="origin" class="border-2 border-dashed">
 
 
         <label for="destination">Route destination</label>
-        <input type="text" placeholder="Write the destination" id="destination" v-model="destination">
+        <input type="text" placeholder="Write the destination" id="destination" v-model="destination" class="border-2 border-dashed">
 
-        <input type="submit" value="Save"/>
+        <input type="submit" value="Save" class="rounded-md border-2 border-rose-500 bg-yellow-400 text-black font-bold"/>
+      </div>
     </form>
   </div>
 

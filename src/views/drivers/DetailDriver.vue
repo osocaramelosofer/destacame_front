@@ -39,7 +39,7 @@ export default {
         const response = await axios.put(`http://127.0.0.1:8000/api/passenger/driver/${this.destinationId}/`, {
           name: this.name,
         });
-        this.name = '';
+        this.name = response.data.name;
       } catch (error) {
         console.log(error);
       }

@@ -14,10 +14,18 @@ const count = ref(0)
   <nav class="bg-white flex justify-between items-center px-8">
     <div>
       <div class="dropdown">
-        <button class="dropbtn">Passengers</button>
+        <button class="dropbtn">Drivers</button>
         <div class="dropdown-content">
-          <router-link to="/list-passengers">List Passengers</router-link>
-          <router-link to="/create-passenger">Create Passenger</router-link>
+          <router-link to="/list-drivers">List drivers</router-link>
+          <router-link to="/create-driver">Create Driver</router-link>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Buses</button>
+        <div class="dropdown-content">
+          <router-link to="/list-buses">List Buses</router-link>
+          <router-link to="/create-buss">Create Buss</router-link>
         </div>
       </div>
 
@@ -30,29 +38,21 @@ const count = ref(0)
       </div>
 
       <div class="dropdown">
-        <button class="dropbtn">Drivers</button>
-        <div class="dropdown-content">
-          <router-link to="/list-drivers">List drivers</router-link>
-          <router-link to="/create-driver">Create Driver</router-link>
-        </div>
-      </div>
-
-      <div class="dropdown">
         <button class="dropbtn">Journeys</button>
         <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <router-link to="/list-buss-route">List Journeys</router-link>
+          <router-link to="/create-buss-route">Create Journey</router-link>
         </div>
       </div>
 
       <div class="dropdown">
-        <button class="dropbtn">Buses</button>
+        <button class="dropbtn">Passengers</button>
         <div class="dropdown-content">
-          <router-link to="/list-buses">List Buses</router-link>
-          <router-link to="/create-buss">Create Buss</router-link>
+          <router-link to="/list-passengers">List Passengers</router-link>
+          <router-link to="/create-passenger">Create Passenger</router-link>
         </div>
       </div>
+
     </div>
 
     <div class="flex items-center">

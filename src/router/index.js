@@ -20,6 +20,9 @@ const routes = [
     {path: '/detail-buss/:id', name:'detail.buss', component: ()=> import('../views/buses/DetailBuss.vue')},
     {path: '/create-buss', name:'create.buss', component: ()=> import('../views/buses/CreateBuss.vue')},
 
+    {path: '/list-buss-route', name:'list.buss.route', component: ()=> import('../views/buss_routes/ListBussRoutes.vue')},
+    {path: '/detail-buss-route/:id', name:'detail.buss.route', component: ()=> import('../views/buss_routes/DetailBussRoute.vue')},
+    {path: '/create-buss-route', name:'create.buss.route', component: ()=> import('../views/buss_routes/CreateBussRoute.vue')},
 
 ]
 
