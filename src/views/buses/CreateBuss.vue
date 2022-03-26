@@ -4,7 +4,7 @@
     <h2 class="text-5xl mb-5 font-bold">Create Buss</h2>
 
 
-    <loader v-model:loading="loading" />
+    <loader v-model:loading="loading" @close="closeModal" :success="success" />
     <form v-on:submit.prevent="submitForm" v-bind:class="{ hidden: loading }">
       <div class="flex flex-col">
         <label for="name">Plate Buss</label>
@@ -39,9 +39,13 @@ export default {
       drivers: [],
       driverSelected: Number,
       loading: false,
+      success: false,
     }
   },
   methods: {
+    closeModal(){
+      this.loading = !this.loading
+    },
     getDrivers () {
       return axios.get(`http://127.0.0.1:8000/api/passenger/driver`, {
             headers: {
@@ -56,6 +60,7 @@ export default {
           plate: this.plate,
           driver: { id: this.driverSelected}
         });
+        this.success = !this.success
         this.driverSelected = response.data.driver.id;
         this.plate = response.data.plate;
       } catch (error) {

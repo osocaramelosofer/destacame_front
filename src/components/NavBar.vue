@@ -1,12 +1,4 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import axios from 'axios'
-
-defineProps({
-  msg: String
-})
-
-const count = ref(0)
 
 </script>
 

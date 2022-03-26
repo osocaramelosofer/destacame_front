@@ -1,49 +1,46 @@
 <template>
-  <div class="bg-slate-100 p-5">
-    <h2 class="text-5xl mb-5 font-bold">Create Journey</h2>
+  <div class="p-5">
+    <div class="px-64">
+      <h2 class="text-5xl mb-5 font-bold">Create Journey</h2>
+      <loader @close="closeModal" :loading="loading" :success="success"/>
+      <form v-on:submit.prevent="submitForm" :class="{ hidden: loading}">
+        <div class="flex flex-col h-96 justify-between">
+          <label>Route: </label>
+          <select name="driver" class=" border-dashed bg-yellow-100" v-model="routeSelected">
+            <option v-for="route in routes" :key="route.id" v-bind:value="route.id">
+              Route Origin: {{ route.origin }} - Route Destination: {{ route.destination}}
+            </option>
+          </select>
 
-    <form v-on:submit.prevent="submitForm">
-      <div class="flex flex-col">
-        <label>Route: </label>
-        <select name="driver" class=" border-dashed bg-yellow-100" v-model="routeSelected">
-          <option v-for="route in routes" :key="route.id" v-bind:value="route.id">
-            Route Origin: {{ route.origin }} - Route Destination: {{ route.destination}}
-          </option>
-        </select>
+          <label>Buss: </label>
+          <select name="driver" class=" border-dashed bg-yellow-100" v-model="bussSelected">
+            <option v-for="buss in buses" :key="buss.id" v-bind:value="buss.id">
+              Buss Id: {{ buss.id }} - Plate: {{ buss.plate}}
+            </option>
+          </select>
 
-        <label>Buss: </label>
-        <select name="driver" class=" border-dashed bg-yellow-100" v-model="bussSelected">
-          <option v-for="buss in buses" :key="buss.id" v-bind:value="buss.id">
-            Buss Id: {{ buss.id }} - Plate: {{ buss.plate}}
-          </option>
-        </select>
+          <label for="date">Date: </label>
+          <input type="date" id="date"  class="border-2 border-dashed" v-model="date">
 
-        <label for="date">Date: </label>
-        <input type="date" id="date"  class="border-2 border-dashed" v-model="date">
+          <label for="time">time: </label>
+          <input type="time" id="time"  class="border-2 border-dashed" v-model="time">
 
-        <label for="time">time: </label>
-        <input type="text" id="time"  class="border-2 border-dashed" v-model="time">
-
-        <input type="submit" value="Save" class="rounded-md border-2 border-rose-500 bg-yellow-400 text-black font-bold"/>
-      </div>
-    </form>
-
+          <input type="submit" value="Save" class="rounded-md bg-green-400 text-white font-bold py-1"/>
+        </div>
+      </form>
+    </div>
 <!--      <button class="bg-red-400" @click="deleteBussRoute">Delete</button>-->
-
-
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Loader from '../../components/Loader'
-import HelloWorld from '../../components/HelloWorld'
+import Loader from '../../components/Loader.vue'
 
 export default {
   name: 'CreateBussRoute',
   components:{
     Loader,
-    HelloWorld
   },
   data(){
     return {
@@ -55,6 +52,8 @@ export default {
       routes: [],
       bussSelected: Number,
       routeSelected: Number,
+      loading: false,
+      success: false
     }
   },
   computed: {
@@ -63,6 +62,9 @@ export default {
     }
   },
   methods: {
+    closeModal(){
+      this.loading = !this.loading
+    },
     getBuses () {
       return axios.get(`http://127.0.0.1:8000/api/buses/buss`, {
         headers: {'Content-type': 'application/json'}
@@ -75,6 +77,7 @@ export default {
     },
     async submitForm(){
       try {
+        this.loading = !this.loading
         const response = await axios.post(`http://127.0.0.1:8000/buses/create-bussroute`, {
           route: { id: this.routeSelected },
           buss: { id: this.bussSelected },
@@ -85,6 +88,7 @@ export default {
         this.bussSelected = response.data.buss.id;
         this.date = response.data.date;
         this.time = response.data.time;
+        this.success = !this.success
       } catch (error) {
         console.log(error);
       }
