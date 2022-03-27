@@ -1,8 +1,8 @@
 <template>
-  <div class="p-5">
+  <div class="bg-slate-100 p-5">
     <div class="px-64">
       <h2 class="text-5xl mb-5 font-bold">Create Journey</h2>
-      <loader @close="closeModal" :loading="loading" :success="success"/>
+      <loader :loading="loading" :success="success" @close="closeModal"/>
       <form v-on:submit.prevent="submitForm" :class="{ hidden: loading}">
         <div class="flex flex-col h-96 justify-between">
           <label>Route: </label>
@@ -64,6 +64,7 @@ export default {
   methods: {
     closeModal(){
       this.loading = !this.loading
+      this.success = !this.success
     },
     getBuses () {
       return axios.get(`http://127.0.0.1:8000/api/buses/buss`, {
@@ -84,11 +85,11 @@ export default {
           date: this.date,
           time: this.time
         });
+        this.success = !this.success
         this.routeSelected = response.data.route.id;
         this.bussSelected = response.data.buss.id;
         this.date = response.data.date;
         this.time = response.data.time;
-        this.success = !this.success
       } catch (error) {
         console.log(error);
       }

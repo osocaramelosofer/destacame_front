@@ -50,9 +50,7 @@ export default {
     },
     getDrivers () {
       return axios.get(`http://127.0.0.1:8000/api/passenger/driver`, {
-            headers: {
-                'Content-type': 'application/json',
-            }
+        headers: {'Content-type': 'application/json'}
       });
     },
     async submitForm(){

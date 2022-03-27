@@ -1,6 +1,6 @@
 
 <template>
-  <div class="">
+  <div class="bg-slate-100 p-5">
     <div class="px-64">
       <h2 class="text-5xl mb-5 font-bold">Create Route</h2>
       <loader :loading="loading" :success="success" @close="closeModal"/>
@@ -41,6 +41,7 @@ export default {
   methods: {
     closeModal(){
       this.loading = !this.loading
+      this.success = !this.success
     },
     async submitForm(){
       try {

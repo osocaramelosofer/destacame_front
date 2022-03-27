@@ -1,11 +1,12 @@
 
 <template>
-  <div class="">
+  <div class="bg-slate-100 p-5">
     <div class="px-60">
       <h2 class="text-5xl mb-5 font-bold">Create Passenger</h2>
-      <loader :loading="loading" :sucecess="success" @close="closeModal"/>
+      <loader :loading="loading" :success="success" @close="closeModal"/>
+
       <form v-on:submit.prevent="submitForm" :class="{ hidden:loading }">
-        <div class="flex flex-col">
+        <div class="flex flex-col h-56 justify-between">
           <label for="name">Passenger Name</label>
           <input type="text" placeholder="Write your name" id="name" v-model="name">
 
@@ -40,7 +41,7 @@ export default {
       bussRoutes: [],
       bussRouteSelected: Number,
       loading: false,
-      success: false,
+      success: false
     }
   },
   methods: {

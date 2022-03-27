@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-slate-100 p-5">
     <div class="px-64">
       <h2 class="text-5xl mb-5 font-bold">Detail Passenger</h2>
       <loader @close="closeModal" :loading="loading" :success="success" />
