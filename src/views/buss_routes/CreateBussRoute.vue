@@ -1,6 +1,6 @@
 <template>
   <div class="bg-slate-100 p-5">
-    <div class="px-64">
+    <div class="px-64 mt-36">
       <h2 class="text-5xl mb-5 font-bold">Create Journey</h2>
       <loader :loading="loading" :success="success" @close="closeModal"/>
       <form v-on:submit.prevent="submitForm" :class="{ hidden: loading}">

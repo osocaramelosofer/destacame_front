@@ -1,7 +1,7 @@
 
 <template>
   <div class="bg-slate-100 pb-10 pt-5">
-    <div class="px-44">
+    <div class="px-44 mt-36">
       <h2 class="text-5xl mb-5 font-bold">List Routes</h2>
 
       <div v-if="routes.length !== 0">

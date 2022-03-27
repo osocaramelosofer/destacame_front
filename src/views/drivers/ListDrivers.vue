@@ -1,7 +1,7 @@
 
 <template>
   <div class="bg-slate-100 p-5">
-    <div class="px-40">
+    <div class="px-40 mt-36">
       <h2 class="text-5xl mb-5 font-bold">List Drivers</h2>
 
       <div v-if="drivers.length !== 0">

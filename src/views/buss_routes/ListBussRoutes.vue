@@ -1,7 +1,7 @@
 
 <template>
   <div class="bg-slate-100 p-5">
-    <div class="px-44">
+    <div class="px-44 mt-36">
       <h2 class="text-5xl mb-5 font-bold">List Journeys</h2>
 
       <table class="bg-white rounded-lg m-auto w-full rounded-md" cellspacing="2" cellpadding="2" border="1" v-if="bussRoutes.length !== 0">

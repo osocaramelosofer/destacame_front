@@ -1,7 +1,7 @@
 
 <template>
   <div class="bg-slate-100 p-5">
-    <div class="px-44">
+    <div class="px-44 mt-36">
       <h2 class="text-5xl mb-5 font-bold">Create Buss</h2>
 
       <loader v-model:loading="loading" @close="closeModal" :success="success" />

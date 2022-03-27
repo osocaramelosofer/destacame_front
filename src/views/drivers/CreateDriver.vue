@@ -1,7 +1,7 @@
 
 <template>
   <div class="bg-slate-100 p-5">
-    <div class="px-72">
+    <div class="px-72 mt-36">
       <h2 class="text-5xl mb-5 font-bold">Create Driver</h2>
 
       <loader :loading="loading" :success="success" @close="closeModal"/>
