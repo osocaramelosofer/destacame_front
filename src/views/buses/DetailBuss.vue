@@ -52,6 +52,7 @@ export default {
   methods: {
     closeModal(){
       this.loading = !this.loading
+      this.success = !this.success
     },
     getBuses () {
       return axios.get(`http://127.0.0.1:8000/api/buses/buss`, {
