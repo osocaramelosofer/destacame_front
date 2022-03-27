@@ -1,44 +1,48 @@
 <template>
-  <div class="bg-slate-100 p-5">
-    <h2 class="text-5xl mb-5 font-bold">Detail Journey</h2>
-    <div v-if="bussRoute">
-      <form v-on:submit.prevent="submitForm">
-        <div class="flex flex-col">
-          <label>Route: </label>
-          <select name="driver" class=" border-dashed bg-yellow-100" v-model="routeSelected">
-            <option v-for="route in routes" :key="route.id" v-bind:value="route.id">
-              Route Origin: {{ route.origin }} - Route Destination: {{ route.destination}}
-            </option>
-          </select>
+  <div>
+    <div class="px-64">
+      <h2 class="text-5xl mb-5 font-bold">Detail Journey</h2>
+      <loader :loading="loading" :success="success" @close="closeModal"/>
+      <div v-if="bussRoute" :class="{hidden: loading}">
+        <form v-on:submit.prevent="submitForm">
+          <div class="flex flex-col h-96 justify-between">
+            <label>Route: </label>
+            <select name="driver" class=" border-dashed bg-yellow-100" v-model="routeSelected">
+              <option v-for="route in routes" :key="route.id" v-bind:value="route.id">
+                Route Origin: {{ route.origin }} - Route Destination: {{ route.destination}}
+              </option>
+            </select>
 
-          <label>Buss: </label>
-          <select name="driver" class=" border-dashed bg-yellow-100" v-model="bussSelected">
-            <option v-for="buss in buses" :key="buss.id" v-bind:value="buss.id">
-              Buss Id: {{ buss.id }} - Plate: {{ buss.plate}}
-            </option>
-          </select>
+            <label>Buss: </label>
+            <select name="driver" class=" border-dashed bg-yellow-100" v-model="bussSelected">
+              <option v-for="buss in buses" :key="buss.id" v-bind:value="buss.id">
+                Buss Id: {{ buss.id }} - Plate: {{ buss.plate}}
+              </option>
+            </select>
 
-          <label for="date">Date: </label>
-          <input type="text" id="date"  class="border-2 border-dashed" v-model="date">
+            <label for="date">Date: </label>
+            <input type="date" id="date"  class="border-2 border-dashed" v-model="date">
 
-          <label for="time">time: </label>
-          <input type="text" id="time"  class="border-2 border-dashed" v-model="time">
+            <label for="time">time: </label>
+            <input type="time" id="time"  class="border-2 border-dashed" v-model="time">
 
-          <input type="submit" value="Save" class="rounded-md border-2 border-rose-500 bg-yellow-400 text-black font-bold"/>
-        </div>
-      </form>
-
-<!--      <button class="bg-red-400" @click="deleteBussRoute">Delete</button>-->
+            <input type="submit" value="Save" class="rounded-xl bg-green-400 text-white font-medium py-1 cursor-pointer"/>
+          </div>
+        </form>
+      </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Loader from '../../components/Loader.vue'
 
 export default {
   name: 'DetailBussRoute',
+  components: {
+    Loader
+  },
   data(){
     return {
       buss: {},
@@ -49,6 +53,8 @@ export default {
       routes: [],
       bussSelected: Number,
       routeSelected: Number,
+      loading: false,
+      success: false
     }
   },
   computed: {
@@ -57,6 +63,9 @@ export default {
     }
   },
   methods: {
+    closeModal(){
+      this.loading = !this.loading
+    },
     getBuses () {
       return axios.get(`http://127.0.0.1:8000/api/buses/buss`, {
             headers: {
@@ -73,6 +82,7 @@ export default {
     },
     async submitForm(){
       try {
+        this.loading = !this.loading
         const response = await axios.post(`http://127.0.0.1:8000/buses/update-buss-route`, {
           id: this.bussRoute.id,
           route: { id: this.routeSelected },
@@ -80,6 +90,7 @@ export default {
           date: this.date,
           time: this.time
         });
+        this.success = !this.success
         this.routeSelected = response.data.route.id;
         this.bussSelected = response.data.buss.id;
         this.date = response.data.date;

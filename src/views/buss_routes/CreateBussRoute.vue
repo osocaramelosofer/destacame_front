@@ -25,7 +25,7 @@
           <label for="time">time: </label>
           <input type="time" id="time"  class="border-2 border-dashed" v-model="time">
 
-          <input type="submit" value="Save" class="rounded-md bg-green-400 text-white font-bold py-1"/>
+          <input type="submit" value="Save" class="rounded-xl bg-green-400 text-white font-medium py-1"/>
         </div>
       </form>
     </div>

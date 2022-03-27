@@ -3,7 +3,6 @@
   <div class="bg-slate-100 p-5">
     <h2 class="text-5xl mb-5 font-bold">Create Buss</h2>
 
-
     <loader v-model:loading="loading" @close="closeModal" :success="success" />
     <form v-on:submit.prevent="submitForm" v-bind:class="{ hidden: loading }">
       <div class="flex flex-col">
@@ -45,6 +44,7 @@ export default {
   methods: {
     closeModal(){
       this.loading = !this.loading
+      this.success = !this.success
     },
     getDrivers () {
       return axios.get(`http://127.0.0.1:8000/api/passenger/driver`, {

@@ -1,33 +1,49 @@
 <template>
-  <div class="bg-slate-100 p-5">
-    <h2 class="text-5xl mb-5 font-bold">Detail Passenger</h2>
-    <div v-if="passenger">
-      <form v-on:submit.prevent="submitForm">
-        <div class="flex flex-col">
-          <label for="name">Passenger Name: </label>
-          <input type="text" placeholder="Write your name" id="name"  class="border-2 border-dashed" v-model="name">
+  <div>
+    <div class="px-64">
+      <h2 class="text-5xl mb-5 font-bold">Detail Passenger</h2>
+      <loader @close="closeModal" :loading="loading" :success="success" />
+      <div v-if="passenger" :class="{hidden: loading}">
+        <form v-on:submit.prevent="submitForm">
+          <div class="flex flex-col">
+            <label for="name">Passenger Name: </label>
+            <input type="text" placeholder="Write your name" id="name"  class="border-2 border-dashed" v-model="name">
 
-          <input type="submit" value="Save" class="rounded-md border-2 border-rose-500 bg-yellow-400 text-black font-bold"/>
-        </div>
-      </form>
+            <label>Journey</label>
+            <select v-model="bussRouteSelected" class="bg-yellow-100">
+              <option v-for="buss in bussRoutes" :key="buss.id" v-bind:value="buss.id">
+                {{ buss.id }} - {{ buss.route.origin }} - {{ buss.route.destination}}
+              </option>
+            </select>
 
-      <button class="bg-red-400" @click="deletePassenger">Delete</button>
+            <input type="submit" value="Save" class="rounded-xl  bg-green-400 text-white font-semibold py-1" />
+          </div>
+        </form>
+      </div>
     </div>
     
   </div>
 </template>
 
 <script>
-import { onMounted } from 'vue'
 import axios from 'axios'
-import { ref } from 'vue'
+import Loader from '../../components/Loader.vue'
 
 export default {
   name: 'DetailPassenger',
+  components: {
+    Loader,
+  },
   data(){
     return {
       name: '',
       passenger: {},
+      bussRoutes: [],
+      routes: [],
+      bussRouteSelected: Number,
+      routeSelected: Number,
+      loading: false,
+      success: false
     }
   },
   computed: {
@@ -36,25 +52,39 @@ export default {
     }
   },
   methods: {
-    fortmatResponse(res) {
-    return JSON.stringify(res, null, 2);
+    closeModal(){
+      this.loading = !this.loading
     },
-
+    getPassengers(){
+      return axios.get(`http://127.0.0.1:8000/api/passenger/passenger/${this.destinationId}`, {
+        headers: {'Content-type': 'application/json'}
+      })
+    },
+    getBussRoute () {
+      return axios.get(`http://127.0.0.1:8000/api/buses/buss-route/`, {
+        headers: {'Content-type': 'application/json'}
+      });
+    },
+    getRoutes () {
+      return axios.get(`http://127.0.0.1:8000/api/routes/route`, {
+        headers: {
+          'Content-type': 'application/json',
+        }
+      });
+    },
     async submitForm(){
       try {
-        // Send a POST request to the API
-        const response = await axios.put(`http://127.0.0.1:8000/api/passenger/passenger/${this.destinationId}/`, {
+        this.loading = !this.loading
+        const response = await axios.post(`http://127.0.0.1:8000/passengers/update-passenger`, {
+          id: this.passenger.id,
           name: this.name,
+          leg: { id: this.bussRouteSelected }
         });
-        // Append the returned data to the tasks array
-        // this.tasks.push(response.data);
-        // Reset the title and description field values.
-        this.name = '';
+        this.success = !this.success
       } catch (error) {
         console.log(error);
       }
     },
-
     async deletePassenger() {
       try{
         const response = await axios.delete(`http://127.0.0.1:8000/api/passenger/passenger/${this.destinationId}/`)
@@ -62,22 +92,22 @@ export default {
         console.log(error)
       }
     }
-    
-
   },
   mounted() {
-    axios.get(`http://127.0.0.1:8000/api/passenger/passenger/${this.destinationId}`, {
-      headers: {
-          'Content-type': 'application/json',
-      }
-    })
-    .then(response => {
+    this.getPassengers().then(response => {
       this.passenger = response.data
       this.name = this.passenger.name
+      this.bussRouteSelected = this.passenger.leg.id
+      this.routeSelected = this.passenger.leg.route.id
     })
- 
+
+    this.getBussRoute().then(response => {
+      this.bussRoutes = response.data
+    })
+
+    this.getRoutes().then(response => {
+      this.routes = response.data
+    })
   }
-
-
 }
 </script>
