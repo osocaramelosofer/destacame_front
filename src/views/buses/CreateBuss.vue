@@ -7,10 +7,10 @@
       <loader v-model:loading="loading" @close="closeModal" :success="success" />
       <form v-on:submit.prevent="submitForm" v-bind:class="{ hidden: loading }">
         <div class="flex flex-col h-44 justify-between">
-          <label for="name">Plate Buss</label>
+          <label for="name">Buss Plate</label>
           <input type="select" placeholder="Write the buss plate" class="border-2 border-dashed" id="name" v-model="plate">
 
-          <label for="name">Buss Plate</label>
+          <label for="name">Select a Driver</label>
           <select name="driver" class=" border-dashed bg-yellow-100" v-model="driverSelected">
             <option v-for="driver in drivers" :key="driver.id" v-bind:value="driver.id">
               {{ driver.name }}
@@ -77,3 +77,8 @@ export default {
   }
 }
 </script>
+<style>
+label{
+  font-weight: bold;
+}
+</style>

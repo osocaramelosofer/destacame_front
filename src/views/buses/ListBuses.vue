@@ -4,7 +4,7 @@
     <div class="px-44">
       <h2 class="text-5xl mb-5 font-bold">List Buses</h2>
 
-      <div v-if="buses">
+      <div v-if="buses.length !== 0">
         <table class="bg-white rounded-lg m-auto w-full rounded-md" cellspacing="2" cellpadding="2" border="1">
           <thead class="p-4 ">
             <tr class="p-4 bg-slate-800 text-left ">
@@ -37,8 +37,16 @@
         </table>
       </div>
 
-      <div v-else>
-        <p>No drivers yet</p>
+      <div v-else class="w-64 bg-white rounded-2xl mx-auto py-10 flex flex-col items-center">
+        <div class="w-48 h-48">
+          <img src="../../assets/no_datar.png" alt="no data" class="h-full w-full object-cover rounded-lg" />
+        </div>
+        <span class="font-medium text-medium mt-5">It seems there is no data yet.</span>
+        <div class="hover:bg-green-500 bg-green-400 w-48 rounded-xl text-white font-medium text-center py-1 mt-5">
+          <router-link to="/create-buss">
+            + Add new one
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
