@@ -13,7 +13,7 @@
           <label for="destination">Route destination</label>
           <input type="text" placeholder="Write the destination" id="destination" v-model="destination" class="border-2 border-dashed">
 
-          <input type="submit" value="Save" class="rounded-xl bg-green-400 text-white font-medium py-1"/>
+          <input type="submit" value="Save" class="rounded-xl bg-green-400 text-white font-medium py-1 cursor-pointer"/>
         </div>
       </form>
     </div>

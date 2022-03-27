@@ -16,7 +16,7 @@
               </option>
             </select>
 
-            <input type="submit" value="Save" class="rounded-xl  bg-green-400 text-white font-semibold py-1" />
+            <input type="submit" value="Save" class="cursor-pointer rounded-xl  bg-green-400 text-white font-medium py-1" />
           </div>
         </form>
       </div>
@@ -54,6 +54,7 @@ export default {
   methods: {
     closeModal(){
       this.loading = !this.loading
+      this.success = !this.success
     },
     getPassengers(){
       return axios.get(`http://127.0.0.1:8000/api/passenger/passenger/${this.destinationId}`, {

@@ -1,75 +1,83 @@
 
 <template>
-  <div class="bg-blue-300">
-    <h2 class="bg-red-300 ">Create Passenger</h2>
+  <div class="">
+    <div class="px-60">
+      <h2 class="text-5xl mb-5 font-bold">Create Passenger</h2>
+      <loader :loading="loading" :sucecess="success" @close="closeModal"/>
+      <form v-on:submit.prevent="submitForm" :class="{ hidden:loading }">
+        <div class="flex flex-col">
+          <label for="name">Passenger Name</label>
+          <input type="text" placeholder="Write your name" id="name" v-model="name">
 
-    <form v-on:submit.prevent="submitForm">
-        <label for="name">Passenger Name</label>
-        <input type="text" placeholder="Write your name" id="name" v-model="name">
-        
-        <input type="submit" value="Save"/>
-    </form>
+          <label>Select journey</label>
+          <select v-model="bussRouteSelected" class="bg-yellow-100">
+            <option v-for="buss in bussRoutes" :key="buss.id" v-bind:value="buss.id">
+              {{ buss.id }} - {{ buss.route.origin }} - {{ buss.route.destination}}
+            </option>
+          </select>
+
+          <input type="submit" value="Save" class="rounded-xl  bg-green-400 text-white font-medium py-1 cursor-pointer"/>
+        </div>
+      </form>
+    </div>
   </div>
 
 </template>
 
 <script>
-import { onMounted } from 'vue'
 import axios from 'axios'
-import { ref } from 'vue'
+import Loader from '../../components/Loader.vue'
 
 export default {
   name: 'CreatePassenger',
+  components:{
+    Loader
+  },
   data(){
     return {
       name: '',
       passengers: [],
+      bussRoutes: [],
+      bussRouteSelected: Number,
+      loading: false,
+      success: false,
     }
   },
   methods: {
-    fortmatResponse(res) {
-    return JSON.stringify(res, null, 2);
+    closeModal(){
+      this.loading = !this.loading
+      this.success = !this.success
     },
-
-    getRoutes() {
-    axios.get('http://127.0.0.1:8000/api/buses/buses/', {
-      headers: {
-        'Content-type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:3000',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Access-Control-Allow-Credentials': 'true'
-      },
-    })
-    .then(console.log(response))
+    getPassengers(){
+      return axios.get('http://127.0.0.1:8000/api/passenger/passenger', {
+        headers: {'Content-type': 'application/json'}
+      })
     },
-    
+    getBussRoute () {
+      return axios.get(`http://127.0.0.1:8000/api/buses/buss-route/`, {
+        headers: {'Content-type': 'application/json'}
+      });
+    },
     async submitForm(){
       try {
-        // Send a POST request to the API
-        const response = await axios.post('http://127.0.0.1:8000/api/passenger/passenger/', {
+        this.loading = !this.loading
+        const response = await axios.post('http://127.0.0.1:8000/passengers/create-passenger', {
           name: this.name,
+          leg: {id: this.bussRouteSelected}
         });
-        // Append the returned data to the tasks array
-        // this.tasks.push(response.data);
-        // Reset the title and description field values.
+        this.success = !this.success
         this.name = '';
       } catch (error) {
         console.log(error);
       }
     }
-    
 
   },
   mounted() {
-    axios.get('http://127.0.0.1:8000/api/passenger/passenger', {
-      headers: {
-          'Content-type': 'application/json',
-      }
+    this.getPassengers().then(response => (this.passengers = response.data))
+    this.getBussRoute().then(response => {
+      this.bussRoutes = response.data
     })
-    .then(response => (this.passengers = response.data))
- 
   }
-
-
 }
 </script>

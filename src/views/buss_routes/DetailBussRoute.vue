@@ -65,19 +65,16 @@ export default {
   methods: {
     closeModal(){
       this.loading = !this.loading
+      this.success = !this.success
     },
     getBuses () {
       return axios.get(`http://127.0.0.1:8000/api/buses/buss`, {
-            headers: {
-                'Content-type': 'application/json',
-            }
+        headers: {'Content-type': 'application/json'}
       });
     },
     getRoutes () {
       return axios.get(`http://127.0.0.1:8000/api/routes/route`, {
-        headers: {
-          'Content-type': 'application/json',
-        }
+        headers: {'Content-type': 'application/json'}
       });
     },
     async submitForm(){
