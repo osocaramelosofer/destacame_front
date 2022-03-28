@@ -18,7 +18,7 @@
 .wave {
   opacity: 1;
   position: absolute;
-  top: 60%;
+  top: 80%;
   left: -28%;
   background: #18DFAD;
   width: 100%;
@@ -35,7 +35,7 @@
   animation: drift 10000ms infinite linear;
   opacity: 1;
   background: #2F6690;
-  top: 60%;
+  top: 80%;
   left: -32%;
 }
 
@@ -44,7 +44,7 @@
   opacity: 1;
   /*background: #F12645;*/
   background: #FFB700;
-  top: 60%;
+  top: 80%;
   left: -36%;
   z-index: -2;
 }

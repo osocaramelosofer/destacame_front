@@ -1,7 +1,9 @@
 
 <template>
-  <div class="bg-slate-100 p-5">
-    <div class="px-40 mt-36">
+  <div class="wrapper pt-5">
+    <waves/>
+    <div class="content-wrap px-40 mt-36">
+
       <h2 class="text-5xl mb-5 font-bold">List Drivers</h2>
 
       <div v-if="drivers.length !== 0">
@@ -53,9 +55,13 @@
 <script>
 
 import axios from 'axios'
+import Waves from '../../components/Waves.vue'
 
 export default {
   name: 'ListDrivers',
+  components: {
+    Waves
+  },
   data(){
     return {
       drivers: [],
@@ -64,9 +70,7 @@ export default {
   methods: {
     getDrivers(){
       return axios.get('http://127.0.0.1:8000/api/passenger/driver', {
-        headers: {
-            'Content-type': 'application/json',
-        }
+        headers: {'Content-type': 'application/json'}
       })
     },
     async deleteDriver(id) {
@@ -87,3 +91,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+.content-wrap {
+  position: relative;
+  z-index: 2;
+}
+</style>

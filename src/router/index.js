@@ -5,6 +5,7 @@ import CreatePassenger from '../views/passengers/CreatePassenger.vue'
 
 const routes = [
     {path: '/', name:'home', component: () => import ('../views/Home.vue')},
+    {path: '/about-me', name:'aboutMe', component: () => import ('../views/AboutMe.vue')},
 
     {path: '/list-passengers', name:'passengers', component: ListPassengers},
     {path: '/create-passenger', name:'createPassengers', component: CreatePassenger},

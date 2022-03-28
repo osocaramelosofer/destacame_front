@@ -5,7 +5,9 @@
 <template>
   <nav class="bg-white flex justify-around items-center px-8 fixed z-10 w-full nav_bar">
     <div class="flex items-center">
+
       <router-link to="/" class="w-20 h-20">
+      <logo />
       </router-link>
     </div>
     <div>
@@ -53,12 +55,8 @@
     </div>
 
     <div class="flex items-center ">
-<!--      <div class="w-20 h-20 p-2">
-        <img src="../assets/fast.gif" alt="fast-move" class="h-full w-full object-cover rounded-lg"/>
-      </div>-->
-<!--      <custom-button />-->
+
       <custom-button-two />
-<!--      <span class="text-5xl font-mono font-extrabold">Fast Move</span>-->
     </div>
   </nav>
 </template>

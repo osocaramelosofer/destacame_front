@@ -1,5 +1,5 @@
 <template>
-  <div class="button">
+  <router-link to="/about-me" class="button">
   <a href="#" class="cta flex">
     <span>About me</span>
     <svg width="13px" height="10px" viewBox="0 0 13 10">
@@ -7,7 +7,7 @@
       <polyline points="8 1 12 5 8 9"></polyline>
     </svg>
   </a>
-  </div>
+  </router-link>
 </template>
 
 <style scoped>
