@@ -5,13 +5,8 @@
 <template>
   <nav class="bg-white flex justify-around items-center px-8 fixed z-10 w-full nav_bar">
     <div class="flex items-center">
-<!--      <div class="w-20 h-20 p-2">
-        <img src="../assets/fastBusLogo.png" alt="fast-move" class="h-full w-full object-cover rounded-lg"/>
-      </div>-->
       <router-link to="/" class="w-20 h-20">
-      <logo />
       </router-link>
-<!--      <span class="text-5xl font-mono font-extrabold">Fast Bus</span>-->
     </div>
     <div>
       <div class="dropdown">

@@ -90,9 +90,7 @@ export default {
       }
     })
     .then(response => (this.passengers = response.data))
- 
   }
-
 
 }
 </script>

@@ -4,7 +4,7 @@
     <waves/>
 
     <div class="content-wrap">
-      <div class="hero flex">
+      <div class="hero flex justify-start">
         <div class="w-32 h-32">
           <logo/>
         </div>
@@ -77,7 +77,6 @@ export default {
   margin-top: 7rem;
   width: 100%;
   position: relative;
-  justify-content: center;
 }
 
 .bus {
